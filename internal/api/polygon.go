@@ -27,9 +27,6 @@ type RGBAColorRequest struct {
 }
 
 func DrawPolygonOnFile(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Disposition", "attachment; filename=processed.jpg")
-	w.Header().Set("Content-Type", "application/octet-stream")
-
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
@@ -87,6 +84,9 @@ func DrawPolygonOnFile(w http.ResponseWriter, r *http.Request) {
 	draw.Draw(resultImage, decodedInputImageBounds, decodedInputImage, decodedInputImageBounds.Min, draw.Src)
 
 	polygon.Draw(resultImage, vertices, fillColor)
+
+	w.Header().Set("Content-Disposition", "attachment; filename=processed.jpg")
+	w.Header().Set("Content-Type", "application/octet-stream")
 
 	if err := jpeg.Encode(w, resultImage, nil); err != nil {
 		log.Printf("can't encode jpeg: %s\n", err)
