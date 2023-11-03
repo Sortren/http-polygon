@@ -17,7 +17,7 @@
 							"key": "photo",
 							"contentType": "",
 							"type": "file",
-							"src": ""
+							"src": []
 						},
 						{
 							"key": "vertices",
@@ -46,6 +46,54 @@
 					],
 					"port": "8080",
 					"path": [
+						"draw-polygon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Draw polygon Concurrent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"contentType": "",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "vertices",
+							"value": "[\n    {\n        \"x\": 200,\n        \"y\": 50\n    },\n    {\n        \"x\": 300,\n        \"y\": 100\n    },\n    {\n        \"x\": 250,\n        \"y\": 250\n    },\n    {\n        \"x\": 150,\n        \"y\": 250\n    },\n    {\n        \"x\": 100,\n        \"y\": 100\n    }\n]",
+							"contentType": "application/json",
+							"type": "default"
+						},
+						{
+							"key": "color",
+							"value": "{\"r\": 255}",
+							"contentType": "application/json",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v2/draw-polygon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
 						"draw-polygon"
 					]
 				}
