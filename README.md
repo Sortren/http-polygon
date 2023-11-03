@@ -59,6 +59,8 @@ and the server will start working on localhost:8080, with available endpoint: `/
         }
      ]
     ```
+   ![processed2](https://github.com/Sortren/http-polygon/assets/79079000/76cdf412-29a3-4ef8-af92-622f101ccc66)
+
 2. five vertices
    ```json
      [
@@ -84,3 +86,5 @@ and the server will start working on localhost:8080, with available endpoint: `/
         }
      ]
    ```
+   ![processed](https://github.com/Sortren/http-polygon/assets/79079000/c1af3614-48ce-4a04-93c7-cbb235c7fb2b)
+
