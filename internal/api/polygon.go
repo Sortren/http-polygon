@@ -26,7 +26,15 @@ type RGBAColorRequest struct {
 	A uint8 `json:"a,omitempty"`
 }
 
-func DrawPolygonOnFile(w http.ResponseWriter, r *http.Request) {
+type DrawPolygonHandler struct {
+	DrawingService polygon.DrawService
+}
+
+func NewDrawPolygonHandler(drawingService polygon.DrawService) *DrawPolygonHandler {
+	return &DrawPolygonHandler{DrawingService: drawingService}
+}
+
+func (c *DrawPolygonHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
@@ -83,7 +91,7 @@ func DrawPolygonOnFile(w http.ResponseWriter, r *http.Request) {
 	// copy source of the input image into our result image to be able to draw polygon on top of it
 	draw.Draw(resultImage, decodedInputImageBounds, decodedInputImage, decodedInputImageBounds.Min, draw.Src)
 
-	polygon.Draw(resultImage, vertices, fillColor)
+	c.DrawingService.Draw(resultImage, vertices, fillColor)
 
 	w.Header().Set("Content-Disposition", "attachment; filename=processed.jpg")
 	w.Header().Set("Content-Type", "application/octet-stream")

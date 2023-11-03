@@ -1,9 +1,11 @@
 package polygon
 
 import (
+	"cmp"
 	"errors"
 	"fmt"
 	"image"
+	"slices"
 )
 
 var (
@@ -32,6 +34,27 @@ func (v Vertices) Validate(min, max Vertex) error {
 	}
 
 	return nil
+}
+
+type ShapeBound struct {
+	MinX, MinY, MaxX, MaxY int
+}
+
+func (v Vertices) PolygonBound() ShapeBound {
+	return ShapeBound{
+		MinX: slices.MinFunc(v, func(v1, v2 Vertex) int {
+			return cmp.Compare(v1.X, v2.X)
+		}).X,
+		MinY: slices.MinFunc(v, func(v1, v2 Vertex) int {
+			return cmp.Compare(v1.Y, v2.Y)
+		}).Y,
+		MaxX: slices.MaxFunc(v, func(v1, v2 Vertex) int {
+			return cmp.Compare(v1.X, v2.X)
+		}).X,
+		MaxY: slices.MaxFunc(v, func(v1, v2 Vertex) int {
+			return cmp.Compare(v1.Y, v2.Y)
+		}).Y,
+	}
 }
 
 func ImageBoundsToMinMaxVertex(bounds image.Rectangle) (min Vertex, max Vertex) {
