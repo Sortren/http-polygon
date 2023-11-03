@@ -4,6 +4,20 @@
 1. Use the api endpoint to upload a file and draw any polygon in any RGBA color on top of it, then download the processed file
 2. Import the Draw method from `pkg/polygon` to simply draw polygons by yourself
 
+## Running the app
+In the root directory, simply type:
+```shell
+go run cmd/app.go
+```
+and the server will start working on localhost:8080, with available endpoint: `/draw-polygon`
+
+## Endpoint request restrictions (`/draw-polygon`)
+1. Use POST request 
+2. Use form-data
+3. Three keys needs to be setup: "photo, vertices, color". **Everything is in the postman collection in the root folder in this repo**
+4. One thing requires manual configuration - path to the photo, simply click at the value and change it to the repository's initial.png file (or any other, as you wish)
+5. Right top corner, click the arrow and then *Send and Download*
+
 ## Used algorithm for drawing
 **scanline filling with linear interpolation** implemented in `Draw()` function
 1. iteration starts from the top of an image, `y` indicates a linear function which is a straight horizontal line on the cartesian - `y = i`

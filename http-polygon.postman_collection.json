@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "9b87d34c-1075-44c7-9419-4f0f88aea38c",
+		"name": "http-polygon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Draw polygon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"contentType": "",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "vertices",
+							"value": "[\n    {\n        \"x\": 200,\n        \"y\": 50\n    },\n    {\n        \"x\": 350,\n        \"y\": 250\n    },\n    {\n        \"x\": 50,\n        \"y\": 250\n    },\n    {\n        \"x\": 50,\n        \"y\": 100\n    }\n]",
+							"contentType": "application/json",
+							"type": "default"
+						},
+						{
+							"key": "color",
+							"value": "{\"r\": 255}",
+							"contentType": "application/json",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/draw-polygon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"draw-polygon"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
